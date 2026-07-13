@@ -3,7 +3,7 @@
 // RISE CAPITAL GROUP - Action: Save Post (Create / Update / Delete)
 // POST only. Called by admin/posts/create.php and edit.php
 // ============================================================
-require_once __DIR__ . '/../../bootstrap.php';
+require_once dirname(__DIR__, 3) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 use Rise\Core\Uploader;

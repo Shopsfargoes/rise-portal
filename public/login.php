@@ -2,7 +2,7 @@
 // ============================================================
 // RISE CAPITAL GROUP — Login Page
 // ============================================================
-require_once __DIR__ . '/../app/bootstrap.php';
+require_once dirname(__DIR__, 1) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 

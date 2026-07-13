@@ -5,7 +5,7 @@
 // login.php handles this inline — this file is a standalone
 // fallback for direct POST submissions / AJAX if needed.
 // ============================================================
-require_once __DIR__ . '/../../bootstrap.php';
+require_once dirname(__DIR__, 3) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 

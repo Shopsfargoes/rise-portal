@@ -40,12 +40,14 @@ define('DB_CHARSET', env('DB_CHARSET', 'utf8mb4'));
 
 // ── Application ───────────────────────────────────────────────
 define('APP_NAME',    env('APP_NAME',    'RISE Capital Group'));
-define('APP_URL',     rtrim(env('APP_URL', 'http://localhost'), '/'));
+define('APP_URL',     rtrim(env('APP_URL', 'https://rise-portal.onrender.com'), '/'));
 define('APP_ENV',     env('APP_ENV',     'production'));  // 'development' | 'production'
 define('APP_DEBUG',   env('APP_DEBUG',   'false') === 'true');
 
 // ── Paths (server-side absolute) ─────────────────────────────
-define('BASE_PATH',      dirname(__DIR__));                        // rise-portal/
+// On Render config.php lives at /var/www/html/app/config.php
+// dirname(__DIR__) = /var/www/html = repo root
+define('BASE_PATH',      dirname(__DIR__));
 define('APP_PATH',       BASE_PATH . '/app');
 define('PUBLIC_PATH',    BASE_PATH . '/public');
 define('VIEWS_PATH',     BASE_PATH . '/views');

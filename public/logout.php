@@ -3,7 +3,7 @@
 // RISE CAPITAL GROUP — Logout
 // Destroys the session and redirects to login.
 // ============================================================
-require_once __DIR__ . '/../app/bootstrap.php';
+require_once dirname(__DIR__, 1) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 

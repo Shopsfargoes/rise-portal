@@ -4,7 +4,7 @@
 // Investor lands here from their email invite link.
 // They set their password and activate their account.
 // ============================================================
-require_once __DIR__ . '/../app/bootstrap.php';
+require_once dirname(__DIR__, 1) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 

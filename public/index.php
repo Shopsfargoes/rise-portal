@@ -4,7 +4,7 @@
 // Redirects logged-in users to their dashboard,
 // guests to the login page.
 // ============================================================
-require_once __DIR__ . '/../app/bootstrap.php';
+require_once dirname(__DIR__, 1) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 

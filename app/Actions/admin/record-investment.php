@@ -3,7 +3,7 @@
 // RISE CAPITAL GROUP — Action: Record Investment
 // POST only. Called by admin/investments/create.php
 // ============================================================
-require_once __DIR__ . '/../../bootstrap.php';
+require_once dirname(__DIR__, 3) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 use Rise\Models\Investment;
