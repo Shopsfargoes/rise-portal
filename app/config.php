@@ -83,5 +83,12 @@ if (APP_DEBUG) {
     ini_set('display_errors', 0);
     error_reporting(0);
     ini_set('log_errors', 1);
-    ini_set('error_log', BASE_PATH . '/storage/logs/error.log');
+    $logPath = BASE_PATH . '/storage/logs';
+    if (!is_dir($logPath)) {
+        @mkdir($logPath, 0755, true);
+    }
+    $logFile = is_writable($logPath)
+        ? $logPath . '/error.log'
+        : sys_get_temp_dir() . '/rise_error.log'; // fallback for Render
+    ini_set('error_log', $logFile);
 }

@@ -52,13 +52,14 @@ $recentTx = WalletTransaction::findAll([], 5, 0);
 
 // Investor growth (last 6 months)
 $investorGrowth = db()->fetchAll(
-    "SELECT DATE_FORMAT(created_at, '%b %Y') AS month,
-            COUNT(*) AS count
+    "SELECT DATE_FORMAT(MIN(created_at), '%b %Y') AS month,
+            DATE_FORMAT(created_at, '%Y-%m')       AS month_key,
+            COUNT(*)                               AS count
      FROM users
      WHERE role = 'investor' AND status = 'active'
        AND created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
      GROUP BY DATE_FORMAT(created_at, '%Y-%m')
-     ORDER BY created_at ASC"
+     ORDER BY DATE_FORMAT(created_at, '%Y-%m') ASC"
 );
 
 $flash = getFlash();

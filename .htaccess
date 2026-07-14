@@ -1,6 +1,6 @@
 # ============================================================
 # RISE CAPITAL GROUP — Apache Configuration
-# Place this in the /public directory (web root)
+# Place this file as .htaccess inside the /public directory
 # ============================================================
 
 Options -Indexes
@@ -8,17 +8,19 @@ Options -MultiViews
 
 RewriteEngine On
 
-# Force HTTPS in production
-# Uncomment when SSL certificate is installed:
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Skip rewrite for actual files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-# Route all requests through index.php (front controller)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [QSA,L]
+# Skip rewrite for .php files that exist (direct PHP access)
+RewriteCond %{REQUEST_URI} \.php$
+RewriteRule ^ - [L]
 
-# Block access to hidden files (.env, .git, etc.)
+# Route everything else through index.php
+RewriteRule ^ index.php [QSA,L]
+
+# Block hidden files (.env, .git, etc.)
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
@@ -32,7 +34,7 @@ RewriteRule ^(.*)$ index.php [QSA,L]
     Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Prevent direct access to PHP files in uploads
+# Block PHP execution in uploads folder
 <FilesMatch "\.php$">
     <If "%{REQUEST_URI} =~ m#/assets/uploads/#">
         Order allow,deny
@@ -43,11 +45,11 @@ RewriteRule ^(.*)$ index.php [QSA,L]
 # Cache static assets
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/css             "access plus 1 month"
+    ExpiresByType text/css               "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType image/jpeg           "access plus 1 year"
-    ExpiresByType image/png            "access plus 1 year"
-    ExpiresByType image/webp           "access plus 1 year"
+    ExpiresByType image/jpeg             "access plus 1 year"
+    ExpiresByType image/png              "access plus 1 year"
+    ExpiresByType image/webp             "access plus 1 year"
 </IfModule>
 
 # Compress responses

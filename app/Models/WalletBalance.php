@@ -45,19 +45,17 @@ class WalletBalance
             return false;
         }
 
-        db()->query(
+        $stmt = db()->query(
             "UPDATE wallet_balances
              SET balance = balance - ?, updated_at = NOW()
              WHERE user_id = ? AND balance >= ?",
             [$amount, $userId, $amount]
         );
 
-        // Verify the update actually happened (race condition guard)
-        return db()->pdo()->lastInsertId() !== false
-            || db()->fetchColumn(
-                "SELECT balance FROM wallet_balances WHERE user_id = ?",
-                [$userId]
-            ) <= $current;
+        // Verify the UPDATE actually affected a row (race condition guard)
+        // If another request depleted funds between our check and this UPDATE,
+        // the WHERE balance >= ? clause means rowCount() returns 0
+        return $stmt->rowCount() > 0;
     }
 
     // ── Has sufficient funds ──────────────────────────────
