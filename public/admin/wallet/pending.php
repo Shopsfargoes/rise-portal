@@ -2,7 +2,7 @@
 // ============================================================
 // RISE CAPITAL GROUP — Admin: Pending Wallet Requests
 // ============================================================
-require_once __DIR__ . '/../../app/bootstrap.php';
+require_once dirname(__DIR__, 3) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 use Rise\Models\WalletTransaction;
