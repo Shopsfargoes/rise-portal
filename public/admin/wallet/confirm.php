@@ -4,7 +4,7 @@
 // POST only. Handles contacted / confirmed / rejected
 // Called by admin/wallet/pending.php
 // ============================================================
-require_once __DIR__ . '/../../app/bootstrap.php';
+require_once dirname(__DIR__, 3) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 use Rise\Core\Mailer;
