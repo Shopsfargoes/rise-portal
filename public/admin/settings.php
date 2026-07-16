@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../app/bootstrap.php';
+require_once dirname(__DIR__, 2) . '/app/bootstrap.php';
 use Rise\Core\Auth;
 Auth::requireAdmin();
 

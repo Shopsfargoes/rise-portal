@@ -3,7 +3,7 @@
 // RISE CAPITAL GROUP — Secure Document Download
 // Auth-gated. Streams the file, never exposes the real path.
 // ============================================================
-require_once dirname(__DIR__, 1) . '/app/bootstrap.php';
+require_once dirname(__DIR__, 2) . '/app/bootstrap.php';
 
 use Rise\Core\Auth;
 use Rise\Models\Document;
